@@ -18,11 +18,35 @@ def login():
 	else:
 		username = request.form["username"]
 		password = request.form["password"]
-		if username == "lang" and password == "jai":
+		if not username or not password:  
+			return redirect("/secret2")
+		elif db.login(username, password):
 			session["username"] = username
 			return redirect("/secret1")
 		else:
 			return redirect("/secret2")
+			
+#		if username == "lang" and password == "jai":
+#			session["username"] = username
+#			return redirect("/secret1")
+#		else:
+#			return redirect("/secret2")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+	if request.method == "GET":
+		return render_template("register.html")
+	else:
+		username = request.form["username"]
+		password = request.form["password"]
+		nickname = request.form["nickname"]
+		if not username or not password or not nickname:
+			return redirect("/register")
+		elif db.register(username, password, nickanme):
+			session["username"] = username
+			return redirect("/secret1')
+		else:
+			return redirect("/register")
 
 @app.route("/secret1")
 @auth
