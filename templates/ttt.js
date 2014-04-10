@@ -38,7 +38,7 @@ var x = new Image();
 var o = new Image();
 bg.arc = "ttt_board.png";
 x.arc = "ttt_x.png";
-o.arc = "tt_o.png";
+o.arc = "ttt_o.png";
 
 function draw(){
     c.clearRect(0,0,500,500);
