@@ -44,7 +44,7 @@ def register():
 			return redirect("/register")
 		elif db.register(username, password, nickanme):
 			session["username"] = username
-			return redirect("/secret1')
+			return redirect("/secret1")
 		else:
 			return redirect("/register")
 
