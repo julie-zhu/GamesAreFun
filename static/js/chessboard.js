@@ -16,6 +16,7 @@
 // Chess Util Functions
 //------------------------------------------------------------------------------
 var COLUMNS = 'abcdefgh'.split('');
+var board = new ChessBoard('board');
 
 function validMove(move) {
   // move should be a string
