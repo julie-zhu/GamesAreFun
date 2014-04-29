@@ -15,8 +15,8 @@ class Room(object):
     else:
       self.userOne = userOne
       self.userTwo = userTwo
-      self.userThree = userThree
-      self.userFour = userFour
+      self.userThree = None
+      self.userFour = None
       self.gameMode = normal
 ________________________________________
 #unsure if to make separate classes for pieces or to just make one
