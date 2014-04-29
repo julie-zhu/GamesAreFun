@@ -1,4 +1,4 @@
-body{ background-image:url('images/pattern.jpg'); color: orange; }
+body{ background-image:url('../images/pattern.jpg'); color: orange; }
 	#tabs{ 
     	padding:0; 
     	margin:0; 
