@@ -3,6 +3,21 @@ class User(object):
     self.username = username
     self.nickname = nickname
     
+class Room(object):
+  def __init__(self, rID, userOne, userTwo, userThree, userFour, gameMode):
+    self.rID = rID
+    if userOne and userTwo and userThree and userFour:
+      self.userOne = userOne
+      self.userTwo = userTwo
+      self.userThree = userThree
+      self.userFour = userFour
+      self.gameMode = bughouse
+    else:
+      self.userOne = userOne
+      self.userTwo = userTwo
+      self.userThree = userThree
+      self.userFour = userFour
+      self.gameMode = normal
 ________________________________________
 #unsure if to make separate classes for pieces or to just make one
 #______________________CHESSMEN_______________________________
