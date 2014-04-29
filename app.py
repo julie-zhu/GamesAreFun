@@ -1,4 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, session, request, send_from_directory
+import db
+from utils import User, Pawn, Rook, Knight, Bishop, Queen, King
 
 app = Flask(__name__)
 app.secret_key = "asdfghjkl"
@@ -10,6 +12,10 @@ def auth(func):
 		else:
 			return redirect("/login")
 	return wrapper
+
+@app.route("/")
+def home():
+	return render_template("login.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -47,6 +53,11 @@ def register():
 			return redirect("/secret1")
 		else:
 			return redirect("/register")
+
+#@app.route("/room", methods=["GET","POST"])
+#def room():
+#	if request.method == "GET":
+#		return render_template("room.html")
 
 @app.route("/secret1")
 @auth
