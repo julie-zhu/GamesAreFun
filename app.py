@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, session, request, send_from_directory
 import db
-from utils import User, Pawn, Rook, Knight, Bishop, Queen, King
+from utils import User, Pawn, Rook, Knight, Bishop, Queen, King, Room
 
 app = Flask(__name__)
 app.secret_key = "asdfghjkl"
