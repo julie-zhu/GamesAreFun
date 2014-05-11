@@ -18,7 +18,11 @@ class Room(object):
       self.userThree = None
       self.userFour = None
       self.gameMode = normal
-
+      
+#class Board(object):
+#  def __init__(self):
+#    self.white = [
+      
 #unsure if to make separate classes for pieces or to just make one
 #______________________CHESSMEN_______________________________
 class Pawn(object):
