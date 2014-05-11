@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, session, request, send_from_directory
+from flask import jsonify
 import db
 from utils import User, Pawn, Rook, Knight, Bishop, Queen, King, Room
 
@@ -58,6 +59,12 @@ def register():
 #def room():
 #	if request.method == "GET":
 #		return render_template("room.html")
+
+@app.route("/dosomething")
+def something():
+	a = request.args.get('a', 0, type=int)
+	b = request.args.get('b', 0, type=int)
+	return jsonify(result = a + b)
 
 @app.route("/secret1")
 @auth

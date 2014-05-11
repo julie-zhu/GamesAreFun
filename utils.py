@@ -18,7 +18,7 @@ class Room(object):
       self.userThree = None
       self.userFour = None
       self.gameMode = normal
-________________________________________
+
 #unsure if to make separate classes for pieces or to just make one
 #______________________CHESSMEN_______________________________
 class Pawn(object):
