@@ -9,6 +9,43 @@ app.secret_key = "asdfghjkl"
 black = 1
 white = 2
 spectator = 3
+knightMoves = [6, 10, 15, 17]
+pawnMoves = [7, 8, 9]
+bishopMoves = [1, 2, 3, 4, 5, 6, 7]
+kingMoves = [0, 1, 2, 3, 4, 5, 6, 7]
+
+def checkMove(piece, oPosition, nPosition) {
+	if piece == "Knight":
+		if abs(oPosition - nPosition) in knightMoves:
+			return True
+		else:
+			return False
+	if piece == "Pawn":
+		if abs(oPosition - nPosition) in pawnMoves:
+			return True
+		else:
+			return False
+	if piece == "Rook":
+		if abs(oPosition - nPosition) <= 7:
+			return True
+		elif abs(oPosition - nPosition) % 8 = 0:
+			return True
+		else:
+			return False
+	if piece == "Bishop":
+		#dunno how to do this right now
+		return True
+	if piece == "Queen":
+		#leaving this blank as well. Rook + Bishop = Queen
+		return True
+	if piece == "King":
+		if abs(oPosition - nPosition) <= 8:
+			if abs(oPosition - nPosition) % 8 in kingMoves:
+				return True
+			else:
+				return False
+		else:
+			return False
 
 def auth(func):
 	def wrapper(*args):
@@ -44,6 +81,10 @@ def pieceMoved():
 		#store position of new piece and return true
 	else:
 		#put piece back in original position and return false
+
+@app.route("/showBoard")
+def showBoard():
+	#placeholder
 
 @app.route("/dosomething")
 def something():

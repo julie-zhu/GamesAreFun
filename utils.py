@@ -26,6 +26,8 @@ class User(object):
 #______________________CHESSMEN_______________________________
 class Pawn(object):
   def __init__(self, x, y, color, promo): #promo(tion) is there in case it gets promoted
+    self.name = "Pawn"
+    self.status = 1 #0 means this piece was eaten, 1 means this piece is still on the board
     self.x = x
     self.y = y #location
     self.color = color #team side
@@ -33,30 +35,40 @@ class Pawn(object):
     
 class Rook(object):
   def __init__(self, x, y, color):
+    self.name = "Rook"
+    self.status = 1
     self.x = x
     self.y = y
     self.color = color
     
 class Knight(object):
   def __init__(self, x, y, color):
+    self.name = "Knight"
+    self.status = 1
     self.x = x
     self.y = y
     self.color = color
     
 class Bishop(object):
   def __init__(self, x, y, color):
+    self.name = "Bishop"
+    self.status = 1
     self.x = x
     self.y = y
     self.color = color
     
 class Queen(object):
   def __init__(self, x, y, color):
+    self.name = "Queen"
+    self.status = 1
     self.x = x
     self.y = y
     self.color = color
     
 class King(object):
   def __init__(self, x, y, color):
+    self.name = "King"
+    self.status = 1
     self.x = x
     self.y = y
     self.color = color
