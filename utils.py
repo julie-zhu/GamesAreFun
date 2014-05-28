@@ -1,23 +1,22 @@
 class User(object):
-  def __init__(self, username, nickname):
-    self.username = username
-    self.nickname = nickname
+  def __init__(IDnumber):
+    self.IDnumber = IDnumber
     
-class Room(object):
-  def __init__(self, rID, userOne, userTwo, userThree, userFour, gameMode):
-    self.rID = rID
-    if userOne and userTwo and userThree and userFour:
-      self.userOne = userOne
-      self.userTwo = userTwo
-      self.userThree = userThree
-      self.userFour = userFour
-      self.gameMode = bughouse
-    else:
-      self.userOne = userOne
-      self.userTwo = userTwo
-      self.userThree = None
-      self.userFour = None
-      self.gameMode = normal
+#class Room(object):
+#  def __init__(self, rID, userOne, userTwo, userThree, userFour, gameMode):
+#    self.rID = rID
+#    if userOne and userTwo and userThree and userFour:
+#      self.userOne = userOne
+#      self.userTwo = userTwo
+#      self.userThree = userThree
+#      self.userFour = userFour
+#      self.gameMode = bughouse
+#    else:
+#      self.userOne = userOne
+#      self.userTwo = userTwo
+#      self.userThree = None
+#      self.userFour = None
+#      self.gameMode = normal
       
 #class Board(object):
 #  def __init__(self):
