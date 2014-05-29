@@ -11,7 +11,7 @@ white = 2
 spectator = 3
 knightMoves = [6, 10, 15, 17]
 pawnMoves = [7, 8, 9]
-bishopMoves = [1, 2, 3, 4, 5, 6, 7]
+bishopMoves = [9,11]
 kingMoves = [0, 1, 2, 3, 4, 5, 6, 7]
 
 def checkMove(piece, oPosition, nPosition) {
@@ -33,11 +33,23 @@ def checkMove(piece, oPosition, nPosition) {
 		else:
 			return False
 	if piece == "Bishop":
-		#dunno how to do this right now
-		return True
-	if piece == "Queen":
-		#leaving this blank as well. Rook + Bishop = Queen
-		return True
+		if abs(oPosition - nPosition) % 9 = 0:
+			return True
+		elif abs(oPosition - nPosition) % 11 = 0:
+			return True
+		else: 
+			return False
+	if piece == "Queen": #rook + bishop = queen
+		if abs(oPosition - nPosition) <= 7:
+			return True
+		elif abs(oPosition - nPosition) % 8 = 0:
+			return True
+		if abs(oPosition - nPosition) % 9 = 0:
+			return True
+		elif abs(oPosition - nPosition) % 11 = 0:
+			return True
+		else: 
+			return False
 	if piece == "King":
 		if abs(oPosition - nPosition) <= 8:
 			if abs(oPosition - nPosition) % 8 in kingMoves:
