@@ -44,7 +44,7 @@ def checkMove(piece, oPosition, nPosition) {
 			return True
 		elif abs(oPosition - nPosition) % 8 = 0:
 			return True
-		if abs(oPosition - nPosition) % 9 = 0:
+		elif abs(oPosition - nPosition) % 9 = 0:
 			return True
 		elif abs(oPosition - nPosition) % 11 = 0:
 			return True
