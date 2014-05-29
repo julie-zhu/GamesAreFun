@@ -3,6 +3,8 @@ var ChessCtrl;
 ChessCtrl = (function() {
 
   function ChessCtrl($scope) {
+    $scope.roomshow = false;
+    $scope.roomshow2 = true;
     $scope.grid = new Grid();
     $scope.grid.initialize();
     $scope.whiteTurn = true;
@@ -14,6 +16,12 @@ ChessCtrl = (function() {
         return 'black';
       }
     };
+
+    $scope.showboard = function(){
+      this.roomshow = true;
+      this.roomshow2 = false;
+    };
+
     $scope.moveMessage = function() {
       if ($scope.selectedPosition) {
         return "Please select final position";

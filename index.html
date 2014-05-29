@@ -44,15 +44,17 @@
 	
 	<body>
 		<div ng-controller="ChessCtrl" class="container">
-			<div>
-				<span>Turn Player: <strong> {{currentColor()}} </strong>
-				<br/>
-				<span>{{moveMessage()}}</span>	
-			  </br>
-			  <span class="alert-error">{{errorMessage}}</span>
+			<div><button ng-click = "showboard()" ng-show="roomshow2">ENTER CHESS ROOM</button></div>
+
+			<div ng-show= "roomshow">
+				<span>Turn Player: <strong> {{currentColor()}} </strong></span>
+				<br>
+					<span>{{moveMessage()}}</span>	
+			  	</br>
+			  	<span class="alert-error">{{errorMessage}}</span>
 			</div>
 
-			<div>
+			<div ng-show= "roomshow">
 				<table class="table table-condensed">
 					<tr ng-repeat="i in [7,6,5,4,3,2,1,0]">
 						 <td ng-repeat="j in [0,1,2,3,4,5,6,7]">
