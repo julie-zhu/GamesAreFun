@@ -14,7 +14,7 @@ pawnMoves = [7, 8, 9]
 bishopMoves = [9,11]
 kingMoves = [0, 1, 2, 3, 4, 5, 6, 7]
 
-def checkMove(piece, oPosition, nPosition) {
+def checkMove(piece, oPosition, nPosition):
 	if piece == "Knight":
 		if abs(oPosition - nPosition) in knightMoves:
 			return True
@@ -35,7 +35,7 @@ def checkMove(piece, oPosition, nPosition) {
 	if piece == "Bishop":
 		if abs(oPosition - nPosition) % 9 = 0:
 			return True
-		elif abs(oPosition - nPosition) % 11 = 0:
+		elif abs(oPosition - nPosition) % 7 = 0:
 			return True
 		else: 
 			return False
@@ -46,7 +46,7 @@ def checkMove(piece, oPosition, nPosition) {
 			return True
 		elif abs(oPosition - nPosition) % 9 = 0:
 			return True
-		elif abs(oPosition - nPosition) % 11 = 0:
+		elif abs(oPosition - nPosition) % 7 = 0:
 			return True
 		else: 
 			return False
