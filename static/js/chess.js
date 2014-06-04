@@ -33,6 +33,8 @@ ChessCtrl = (function() {
       var _ref, _ref2;
       return ((_ref = $scope.grid.getPosition(x, y)) != null ? (_ref2 = _ref.getPlayer()) != null ? _ref2.getLabel() : void 0 : void 0) || "";
     };
+
+    //for board1
     $scope.isSelected = function(x, y) {
       var box_class, classes, isBlack, position;
       classes = ['box'];
@@ -80,6 +82,64 @@ ChessCtrl = (function() {
           }
           position.setPlayer(player);
           player.setPosition(position);
+          $scope.selectedPosition.removePlayer();
+          $scope.selectedPosition = null;
+          return $scope.whiteTurn = !$scope.whiteTurn;
+        } else {
+          return $scope.errorMessage = 'Invalid Move position.\
+            Please select a different move position.';
+        }
+      }
+    };
+
+    //for board2
+    $scope.isSelected2 = function(x, y) {
+      var box_class2, classes2, isBlack2, position2;
+      classes2 = ['box'];
+      box_class2 = 'chess-white';
+      isBlack2 = x % 2 === 0;
+      isBlack2 = y % 2 === 0 ? isBlack2 : !isBlack2;
+      classes2.push(isBlack2 ? 'chess-black' : 'chess-white');
+      position2 = $scope.grid.getPosition(x, y);
+      if ((position2 != null ? position2.getPlayer() : void 0) != null) {
+        classes2.push("has-player");
+      }
+      if ($scope.selectedPosition) {
+        if ($scope.selectedPosition === position2) {
+          classes2.push('current-selected');
+        } else if ($scope.selectedPosition.canReach(position2)) {
+          classes2.push('reachable');
+          if (position2 != null ? position2.hasPlayer() : void 0) {
+            classes2.push('chess-kill');
+          }
+        }
+      }
+      return classes2.join(' ');
+    };
+    $scope.select2 = function(x, y) {
+      var player2, position2;
+      $scope.errorMessage = '';
+      position2 = $scope.grid.getPosition(x, y);
+      if (!$scope.selectedPosition) {
+        if (position2.getPlayer().getColor() === $scope.currentColor()) {
+          $scope.selectedPosition = position2;
+        } else {
+          $scope.errorMessage = 'Please select player of color: ' + $scope.currentColor();
+          return;
+        }
+        return;
+      }
+      if (position2 === $scope.selectedPosition) {
+        return $scope.selectedPosition = null;
+      } else {
+        if ($scope.selectedPosition.canReach(position2)) {
+          player2 = $scope.selectedPosition.getPlayer();
+          if (position2.hasPlayer()) {
+            position2.getPlayer()["delete"]();
+            position2.removePlayer();
+          }
+          position2.setPlayer(player2);
+          player2.setPosition(position2);
           $scope.selectedPosition.removePlayer();
           $scope.selectedPosition = null;
           return $scope.whiteTurn = !$scope.whiteTurn;
