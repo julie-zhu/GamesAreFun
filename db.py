@@ -11,6 +11,10 @@ def addPiece(piece, color, x, y):
   db.insert({'piece': piece, 'color': color, 'x': x, 'y': y})
   return True
 
+#def findActivePieces():
+#  db = open()
+#  db.find({
+
 #one array of 32 pieces (2X for bughouse)
 def newBoard(): #or newGame? hmmm
   db = open()
@@ -108,7 +112,7 @@ def newBoard2(): #or newGame? hmmm (1X board's worth of pieces)
 
 
 #finds a piece and updates its coordinates and/or status
-def updatePiece(piece, color, x, y):
+def refreshPiece(piece, color, x, y):
   db = open()
   piece = db.find_one({'piece': piece, 'color':color}, fields={'_id': False})
   db.update({'piece': piece}, {'$set':{'x': x, 'y': y}})
