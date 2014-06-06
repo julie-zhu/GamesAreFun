@@ -92,26 +92,15 @@ def login():
 		else :
 			return redirect("/secret2")
 
-#pieceMoved should, given the piece, its original position, and its new position, check to see
-#if the move is valid. if valid, should return true and save the new position of the piece into the db.
-#if not valid, return false and do nothing at all.
-#@app.route("/pieceMoved")
-#def pieceMoved():
-#	a = checkMove()
-#	if a:
-#		#store position of new piece and return true
-#	else:
-#		#put piece back in original position and return false
-
-#showBoard should get x and y coor's of all active pieces (meaning not taken/defeated) and show them
+#showBoard should return all the pieces on the board
 @app.route("/showBoard")
 def showBoard():
-	#placeholder
+	return jsonify()
 
 #updatePiece should be called whenever a piece is taken, moved, or promoted
 @app.route("/updatePiece")
 def updatePiece():
-	#placeholder
+	refreshPiece(piece, color, x, y)
 
 #here for reference
 @app.route("/dosomething")
