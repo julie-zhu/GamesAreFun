@@ -11,9 +11,20 @@ def addPiece(piece, color, x, y):
   db.insert({'piece': piece, 'color': color, 'x': x, 'y': y})
   return True
 
-#def findActivePieces():
-#  db = open()
-#  db.find({
+#finds a piece and updates its coordinates and/or status
+def refreshPiece(piece, color, x, y):
+  db = open()
+  piece = db.find_one({'piece': piece, 'color':color}, fields={'_id': False})
+  db.update({'piece': piece}, {'$set':{'x': x, 'y': y}})
+  return True
+
+#should return an array of all the pieces on the board
+#this assumes that pieces that have been removed from the board have coordinates (x or y)
+#that are less than 0. since the x/y coord's < 0, they shouldn't be on the board to begin with.
+def findActivePieces():
+  db = open()
+  activePieces = db.find({x: {$gt: 0} }, {_id: 0})
+  return activePieces
 
 #one array of 32 pieces (2X for bughouse)
 def newBoard(): #or newGame? hmmm
@@ -110,10 +121,53 @@ def newBoard2(): #or newGame? hmmm (1X board's worth of pieces)
   addPiece("Queen", "white", 0, 3)
   return True
 
+#move pools. assumes board is from 1-64 (8x8 square)
+knightMoves = [6, 10, 15, 17]
+pawnMoves = [7, 8, 9]
+kingMoves = [0, 1, 7, 9]
 
-#finds a piece and updates its coordinates and/or status
-def refreshPiece(piece, color, x, y):
-  db = open()
-  piece = db.find_one({'piece': piece, 'color':color}, fields={'_id': False})
-  db.update({'piece': piece}, {'$set':{'x': x, 'y': y}})
-  return True
+#checkMove returns true if a piece's movement is legal, false otherwise
+def checkMove(piece, oPosition, nPosition):
+	if piece == "Knight":
+		if abs(oPosition - nPosition) in knightMoves:
+			return True
+		else:
+			return False
+	if piece == "Pawn":
+		if abs(oPosition - nPosition) in pawnMoves:
+			return True
+		else:
+			return False
+	if piece == "Rook":
+		if abs(oPosition - nPosition) <= 7:
+			return True
+		elif abs(oPosition - nPosition) % 8 = 0:
+			return True
+		else:
+			return False
+	if piece == "Bishop":
+		if abs(oPosition - nPosition) % 9 = 0:
+			return True
+		elif abs(oPosition - nPosition) % 7 = 0:
+			return True
+		else: 
+			return False
+	if piece == "Queen": #rook + bishop = queen
+		if abs(oPosition - nPosition) <= 7:
+			return True
+		elif abs(oPosition - nPosition) % 8 = 0:
+			return True
+		elif abs(oPosition - nPosition) % 9 = 0:
+			return True
+		elif abs(oPosition - nPosition) % 7 = 0:
+			return True
+		else: 
+			return False
+	if piece == "King":
+		if abs(oPosition - nPosition) <= 8:
+			if abs(oPosition - nPosition) % 8 in kingMoves:
+				return True
+			else:
+				return False
+		else:
+			return False
