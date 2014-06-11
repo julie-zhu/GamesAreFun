@@ -89,12 +89,9 @@ ChessCtrl = (function() {
             Please select a different move position.';
         }
       }
-    };zzz
+    };
   }
 
   return ChessCtrl;
 
 })();
-
-
-//hi
