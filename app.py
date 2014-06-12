@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, session, request, send_from_directory
 from flask import jsonify
 import db
-from utils import User, Pawn, Rook, Knight, Bishop, Queen, King, Room
 
 app = Flask(__name__)
 app.secret_key = "asdfghjkl"
@@ -24,22 +23,6 @@ def auth(func):
 @app.route("/")
 def home():
 	return render_template("home.html")
-
-#not needed, will delete later
-@app.route("/login", methods=["GET", "POST"])
-def login():
-	if request.method == "GET":
-		return render_template("login.html")
-	else:
-		username = request.form["username"]
-		password = request.form["password"]
-		if not username or not password:  
-			return redirect("/secret2")
-		elif db.login(username, password):
-			session["username"] = username
-			return redirect("/secret1")
-		else :
-			return redirect("/secret2")
 
 #showBoard should return all the pieces on the board
 @app.route("/showBoard")
