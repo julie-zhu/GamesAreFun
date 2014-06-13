@@ -23,7 +23,8 @@
 </head>
 
 <body>
-<div id="board" style="width: 400px"></div>
+<div id="board1" style="width: 400px; float: right; margin-right: 10px"></div>
+<div id="board2" style="width: 400px; float: left"></div>
 <script>
 var board,
   boardEl = $('#board'),
@@ -96,7 +97,7 @@ var onSnapEnd = function() {
   board.position(game.fen());
 };
 
-var cfg = {
+var cfg1 = {
   draggable: true,
   position: 'start',
   onDragStart: onDragStart,
@@ -104,7 +105,18 @@ var cfg = {
   onMoveEnd: onMoveEnd,
   onSnapEnd: onSnapEnd
 };
-board = new ChessBoard('board', cfg);
+
+var cfg2 = {
+  draggable: true,
+  position: 'start',
+  onDragStart: onDragStart,
+  onDrop: onDrop,
+  onMoveEnd: onMoveEnd,
+  onSnapEnd: onSnapEnd,
+  orientation: 'black'
+};
+board = new ChessBoard('board1', cfg1);
+board = new ChessBoard('board2', cfg2);
 
 </script>
 </body>
