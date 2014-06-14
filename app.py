@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, session, request, send_from_directory
 from flask import jsonify
+import json
 import db
 
 app = Flask(__name__)
@@ -27,16 +28,16 @@ def home():
 #showBoard should return all the pieces on the board
 @app.route("/showBoard")
 def showBoard():
-	return jsonify(findActivePieces())
+	return jsonify(boardStatus())
 
 #updatePiece should be called whenever a piece is taken, moved, or promoted
 @app.route("/updatePiece")
-def updatePiece():
-	refreshPiece(piece, color, x, y)
+def updatePiece(row, FEN):
+	updateBoard(row, FEN)
 
 @app.route("/newBoard")
 def newGame():
-	newBoard()
+	newGame2()
 
 #here for reference
 @app.route("/dosomething")

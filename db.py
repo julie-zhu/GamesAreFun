@@ -2,125 +2,65 @@ from pymongo import MongoClient
 
 def open():
   client = MongoClient()
-  db = client.pieces
+  db = client.boards
   return db
   
-#adds pieces
-def addPiece(piece, color, x, y):
-  db = open()
-  db.insert({'piece': piece, 'color': color, 'x': x, 'y': y})
-  return True
+def newGame():
+	db = open()
+	db.remove({})
+	db.insert({'row': 1, 'FEN': "rnbqkbnr"})
+	db.insert({'row': 2, 'FEN': "pppppppp"})
+	db.insert({'row': 3, 'FEN': "8"})
+	db.insert({'row': 4, 'FEN': "8"})
+	db.insert({'row': 5, 'FEN': "8"})
+	db.insert({'row': 6, 'FEN': "8"})
+	db.insert({'row': 7, 'FEN': "PPPPPPPP"})
+	db.insert({'row': 8, 'FEN': "RNBQKBNR"})
+	
+def newGame2():
+	db = open()
+	db.remove({})
+	db.insert({'row': 1, 'FEN': "rnbqkbnr"})
+	db.insert({'row': 2, 'FEN': "pppppppp"})
+	db.insert({'row': 3, 'FEN': "8"})
+	db.insert({'row': 4, 'FEN': "8"})
+	db.insert({'row': 5, 'FEN': "8"})
+	db.insert({'row': 6, 'FEN': "8"})
+	db.insert({'row': 7, 'FEN': "PPPPPPPP"})
+	db.insert({'row': 8, 'FEN': "RNBQKBNR"})
+	db.insert({'row': 16, 'FEN': "rnbqkbnr"})
+	db.insert({'row': 15, 'FEN': "pppppppp"})
+	db.insert({'row': 14, 'FEN': "8"})
+	db.insert({'row': 13, 'FEN': "8"})
+	db.insert({'row': 12, 'FEN': "8"})
+	db.insert({'row': 11, 'FEN': "8"})
+	db.insert({'row': 10, 'FEN': "PPPPPPPP"})
+	db.insert({'row': 9, 'FEN': "RNBQKBNR"})
+	
+def updateBoard(row, FEN):
+	db = open()
+	rowNum = db.find_one({'row': row}, fields={'_id': False})
+	db.update({'row': row}, {'$set':{'FEN':FEN}})
 
-#finds a piece and updates its coordinates and/or status
-def refreshPiece(piece, color, x, y):
-  db = open()
-  piece = db.find_one({'piece': piece, 'color':color}, fields={'_id': False})
-  db.update({'piece': piece}, {'$set':{'x': x, 'y': y}})
-  return True
-
-#should return an array of all the pieces on the board
-#this assumes that pieces that have been removed from the board have coordinates (x or y)
-#that are less than 0. since the x/y coord's < 0, they shouldn't be on the board to begin with.
-def findActivePieces():
-  db = open()
-  activePieces = db.find({x: {$gt: 0} }, {_id: 0})
-  return activePieces
-
-#one array of 32 pieces (2X for bughouse)
-def newBoard(): #or newGame? hmmm
-  db = open()
-  db.remove({}) #to remove any pieces that may already exist
-  
-  for x in range(0, 8):
-    addPiece("Pawn", "black1", 7, x)
-    
-  for x in range(0, 8):
-    addPiece("Pawn", "white1", 1, x)
-    
-  # rows and columns are numbered from 0 to 7  (0,0) is the bottom left corner
-  addPiece("Rook", "black1", 7, 0)
-  addPiece("Rook", "black1", 7, 7)
-  addPiece("Rook", "white1", 0, 0)
-  addPiece("Rook", "white1", 0, 7)
-  
-  addPiece("Knight", "black1", 7, 1)
-  addPiece("Knight", "black1", 7, 6)
-  addPiece("Knight", "white1", 0, 1)
-  addPiece("Knight", "white1", 0, 6)
-  
-  addPiece("Bishop", "black1", 7, 2)
-  addPiece("Bishop", "black1", 7, 5)
-  addPiece("Bishop", "white1", 0, 2)
-  addPiece("Bishop", "white1", 0, 5)
-  
-  addPiece("King", "black1", 7, 4)
-  addPiece("King", "white1", 0, 4)
-  
-  addPiece("Queen", "black1", 7, 3)
-  addPiece("Queen", "white1", 0, 3)
-  return True
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
-  for x in range(0, 8):
-    addPiece("Pawn", "black2", 7, x)
-    
-  for x in range(0, 8):
-    addPiece("Pawn", "white2", 1, x)
-    
-  addPiece("Rook", "black2", 7, 0)
-  addPiece("Rook", "black2", 7, 7)
-  addPiece("Rook", "white2", 0, 0)
-  addPiece("Rook", "white2", 0, 7)
-  
-  addPiece("Knight", "black2", 7, 1)
-  addPiece("Knight", "black2", 7, 6)
-  addPiece("Knight", "white2", 0, 1)
-  addPiece("Knight", "white2", 0, 6)
-  
-  addPiece("Bishop", "black2", 7, 2)
-  addPiece("Bishop", "black2", 7, 5)
-  addPiece("Bishop", "white2", 0, 2)
-  addPiece("Bishop", "white2", 0, 5)
-  
-  addPiece("King", "black2", 7, 4)
-  addPiece("King", "white2", 0, 4)
-  
-  addPiece("Queen", "black2", 7, 3)
-  addPiece("Queen", "white2", 0, 3)
-  return True
-#-------------------------------------------------------------------------------------
-def newBoard2(): #or newGame? hmmm (1X board's worth of pieces)
-  db = open()
-  db.remove({}) #to remove any pieces that may already exist
-  
-  for x in range(0, 8):
-    addPiece("Pawn", "black", 7, x)
-    
-  for x in range(0, 8):
-    addPiece("Pawn", "white", 1, x)
-    
-  # rows and columns are numbered from 0 to 7  (0,0) is the bottom left corner
-  addPiece("Rook", "black", 7, 0)
-  addPiece("Rook", "black", 7, 7)
-  addPiece("Rook", "white", 0, 0)
-  addPiece("Rook", "white", 0, 7)
-  
-  addPiece("Knight", "black", 7, 1)
-  addPiece("Knight", "black", 7, 6)
-  addPiece("Knight", "white", 0, 1)
-  addPiece("Knight", "white", 0, 6)
-  
-  addPiece("Bishop", "black", 7, 2)
-  addPiece("Bishop", "black", 7, 5)
-  addPiece("Bishop", "white", 0, 2)
-  addPiece("Bishop", "white", 0, 5)
-  
-  addPiece("King", "black", 7, 4)
-  addPiece("King", "white", 0, 4)
-  
-  addPiece("Queen", "black", 7, 3)
-  addPiece("Queen", "white", 0, 3)
-  return True
-
+def boardStatus():
+	db = open()
+	fenString1 = ""
+	fenString2 = ""
+	for x in range(0,8):
+		dbFenString1 = db.find_one({'row': x+1}, fields={'_id': False}).getField('FEN')
+		fenString1 += dbFenString1
+		if x != 7:
+			fenString += "/"
+	for x in range(8,16):
+		dbFenString2 = db.find_one({'row': x+1}, fields={'_id': False)}.getField('FEN')
+		fenString2 += dbFenString2
+		if x != 15:
+			fenString += "/"
+	ret = [fenString1, fenString2]
+	return ret
+	
+#~~~~~~~extra stuff~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	
 #move pools. assumes board is from 1-64 (8x8 square)
 knightMoves = [6, 10, 15, 17]
 pawnMoves = [7, 8, 9]
