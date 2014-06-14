@@ -29,13 +29,13 @@ p {
 <div id="board1" style="width: 400px; float: right; margin-right: 10px"></div>
 <div id="board2" style="width: 400px; float: left"></div>
 
-<p style="position: relative; left: 400px; top: 396px">Status: <span id="status1"></span></p>
-<p style="position: relative; left: 400px; top: 396px">FEN: <span id="fen1"></span></p>
-<p style="position: relative; left: 400px; top: 396px">PGN: <span id="pgn1"></span></p>
+<p style="position: relative; left: 400px; top: 496px">Status: <span id="status1"></span></p>
+<p style="position: relative; left: 400px; top: 496px">FEN: <span id="fen1"></span></p>
+<p style="position: relative; left: 400px; top: 496px">PGN: <span id="pgn1"></span></p>
 
-<p style="position: relative; left: -400px; top: 270px">Status: <span id="status2"></span></p>
-<p style="position: relative; left: -400px; top: 270px">FEN: <span id="fen2"></span></p>
-<p style="position: relative; left: -400px; top: 270px">PGN: <span id="pgn2"></span></p>
+<p style="position: relative; left: -400px; top: 370px">Status: <span id="status2"></span></p>
+<p style="position: relative; left: -400px; top: 370px">FEN: <span id="fen2"></span></p>
+<p style="position: relative; left: -400px; top: 370px">PGN: <span id="pgn2"></span></p>
 
 <script>
 var board1,
@@ -175,7 +175,8 @@ var cfg1 = {
   position: 'start',
   onDragStart: onDragStart,
   onDrop: onDrop,
-  onSnapEnd: onSnapEnd
+  onSnapEnd: onSnapEnd,
+  sparePieces: true
 };
 
 var cfg2 = {
@@ -184,7 +185,8 @@ var cfg2 = {
   onDragStart: onDragStart1,
   onDrop: onDrop1,
   onSnapEnd: onSnapEnd1,
-  orientation: 'black'
+  orientation: 'black',
+  sparePieces: true
 };
 
 board1 = new ChessBoard('board1', cfg1);
