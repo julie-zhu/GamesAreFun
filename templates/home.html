@@ -2,12 +2,12 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="../static/css/chessboard-0.3.0.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="../static/js/json3.min.js"></script>
+<script src="../static/js/jquery.color.min.js"></script>
 <script src="../static/js/chessboard-0.3.0.js"></script>
 <script src="../static/js/chess2.js"></script>
 <script src="../static/js/chessboard.js"></script>
-<script src="../static/js/json3.min.js"></script>
-<script src="../static/js/jquery.color.min.js"></script>
-<script src="../static/js/jquery-1.10.1.min.js"></script>
 <style type="text/css">
 .highlight-white {
   -webkit-box-shadow: inset 0 0 3px 3px yellow;
@@ -103,7 +103,8 @@ var cfg1 = {
   onDragStart: onDragStart,
   onDrop: onDrop,
   onMoveEnd: onMoveEnd,
-  onSnapEnd: onSnapEnd
+  onSnapEnd: onSnapEnd,
+  pieceTheme: '../static/img/chesspieces/wikipedia/{piece}.png'
 };
 
 var cfg2 = {
@@ -113,6 +114,7 @@ var cfg2 = {
   onDrop: onDrop,
   onMoveEnd: onMoveEnd,
   onSnapEnd: onSnapEnd,
+  pieceTheme: '../static/img/chesspieces/wikipedia/{piece}.png',
   orientation: 'black'
 };
 board = new ChessBoard('board1', cfg1);
