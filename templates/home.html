@@ -19,22 +19,23 @@
   -moz-box-shadow: inset 0 0 3px 3px blue;
   box-shadow: inset 0 0 3px 3px blue;  
 }
+p {
+	font-family:"Helvetica"
+	}
 </style>
 </head>
 
-<body>
+<body bgcolor="#E6E6FA">
 <div id="board1" style="width: 400px; float: right; margin-right: 10px"></div>
 <div id="board2" style="width: 400px; float: left"></div>
 
-<p>Status: <span id="status1"></span></p>
-<p>FEN: <span id="fen1"></span></p>
-<p>PGN: <span id="pgn1"></span></p>
+<p style="position: relative; left: 400px; top: 396px">Status: <span id="status1"></span></p>
+<p style="position: relative; left: 400px; top: 396px">FEN: <span id="fen1"></span></p>
+<p style="position: relative; left: 400px; top: 396px">PGN: <span id="pgn1"></span></p>
 
-<hr>
-
-<p>Status: <span id="status2"></span></p>
-<p>FEN: <span id="fen2"></span></p>
-<p>PGN: <span id="pgn2"></span></p>
+<p style="position: relative; left: -400px; top: 270px">Status: <span id="status2"></span></p>
+<p style="position: relative; left: -400px; top: 270px">FEN: <span id="fen2"></span></p>
+<p style="position: relative; left: -400px; top: 270px">PGN: <span id="pgn2"></span></p>
 
 <script>
 var board1,

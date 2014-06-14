@@ -81,25 +81,25 @@ def checkMove(piece, oPosition, nPosition):
 	if piece == "Rook":
 		if abs(oPosition - nPosition) <= 7:
 			return True
-		elif abs(oPosition - nPosition) % 8 = 0:
+		elif abs(oPosition - nPosition) % 8 == 0:
 			return True
 		else:
 			return False
 	if piece == "Bishop":
-		if abs(oPosition - nPosition) % 9 = 0:
+		if abs(oPosition - nPosition) % 9 == 0:
 			return True
-		elif abs(oPosition - nPosition) % 7 = 0:
+		elif abs(oPosition - nPosition) % 7 == 0:
 			return True
 		else: 
 			return False
 	if piece == "Queen": #rook + bishop = queen
 		if abs(oPosition - nPosition) <= 7:
 			return True
-		elif abs(oPosition - nPosition) % 8 = 0:
+		elif abs(oPosition - nPosition) % 8 == 0:
 			return True
-		elif abs(oPosition - nPosition) % 9 = 0:
+		elif abs(oPosition - nPosition) % 9 == 0:
 			return True
-		elif abs(oPosition - nPosition) % 7 = 0:
+		elif abs(oPosition - nPosition) % 7 == 0:
 			return True
 		else: 
 			return False
