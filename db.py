@@ -1,5 +1,7 @@
 from pymongo import MongoClient
 
+#reference: http://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation
+
 def open():
   client = MongoClient()
   db = client.boards
