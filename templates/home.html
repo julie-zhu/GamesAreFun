@@ -193,6 +193,23 @@ board1 = new ChessBoard('board1', cfg1);
 board2 = new ChessBoard('board2', cfg2);
 
 updateStatus();
+
+//this should be called every 10 seconds to update both boards
+//function below should get the FEN string from /showBoard's method
+//then somehow use it to update the boards.
+
+//setInterval("updateBoard()", 10000);
+//function updateBoard(){
+//var request = $.ajax({
+//	type: "POST",
+//	url: "/showBoard",
+//	data: {"name":""},
+//	dataType: "text"
+//	});
+//	request.done(function(JSON_string){
+//		(something here)
+//	});
+//});
 </script>
 </body>
 
