@@ -28,7 +28,8 @@ def home():
 #showBoard should return all the pieces on the board
 @app.route("/showBoard")
 def showBoard():
-	return jsonify(boardStatus())
+	fenString = boardStatus()
+	return jsonify(fenString)
 
 #updatePiece should be called whenever a piece is taken, moved, or promoted
 @app.route("/updatePiece")
