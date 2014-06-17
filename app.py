@@ -6,28 +6,27 @@ import db
 app = Flask(__name__)
 app.secret_key = "asdfghjkl"
 
-#player ID's
-black = 1
-white = 2
-spectator = 3
+#room capacity
+players = [0,0,0,0]
+counter = 0
 
-#dunno , just kept this here in case it's needed
-def auth(func):
-	def wrapper(*args):
-		if "username" in session:
-			return func()
-		else:
-			return redirect("/login")
-	return wrapper
-
-#homepage, needs to have navigation to board page
 @app.route("/")
 def home():
 	return render_template("home.html")
 
-#showBoard should return all the pieces on the board
-@app.route("/showBoard")
-def showBoard():
+#give the ID of the player
+@app.route("/giveID")
+def giveID():
+	for x in players:
+		if x == 0:
+			players[x] = 1
+			return jsonify(counter + 1)
+		else:
+			counter += 1
+			
+#updateBoard returns the current position of all the pieces
+@app.route("/updateBoard")
+def updateBoard():
 	return jsonify(boardStatus())
 
 #updatePiece should be called whenever a piece is taken, moved, or promoted
@@ -46,11 +45,12 @@ def something():
 	b = request.args.get('b', 0, type=int)
 	return jsonify(result = a + b)
 
-#logout should remove the ID of the user (1, 2, or 3) so that other people can play/spectate
+#logout should empty out a slot in the players list for someone else to join
 @app.route("/logout")
 def logout():
-	session.pop("username", None)
-	return redirect("/login")
+	for x in players:
+		if x == 1:
+			players[x] = 0
 
 if __name__ == "__main__":
 	app.debug = True
