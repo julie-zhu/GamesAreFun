@@ -49,7 +49,21 @@ var board2,
   statusEl2 = $('#status2'),
   fenEl2 = $('#fen2'),
   pgnEl2 = $('#pgn2');
-  
+
+//$(document).ready(function(){
+//	$.getJSON('/giveID'),
+//	function(data){
+//		if (data < 3) {
+//			var board1Drag = true;
+//			var board2Drag = false;
+//		}
+//		else {
+//			var board1Drag = false;
+//			var board2Drag = true;
+//		}
+//	}
+//});
+
 //~~~~~~~~~~~~~for board 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // do not pick up pieces if the game is over
 // only pick up pieces for the side to move
@@ -171,7 +185,7 @@ var updateStatus1 = function() {
 //~~~~~~~~~~configuration~~~~~~~~~~~~~~~~~~~~~~~~
 
 var cfg1 = {
-  draggable: true,
+  draggable: board1Drag,
   position: 'start',
   onDragStart: onDragStart,
   onDrop: onDrop,
@@ -180,7 +194,7 @@ var cfg1 = {
 };
 
 var cfg2 = {
-  draggable: true,
+  draggable: board2Drag,
   position: 'start',
   onDragStart: onDragStart1,
   onDrop: onDrop1,
@@ -197,19 +211,17 @@ updateStatus();
 //this should be called every 10 seconds to update both boards
 //function below should get the FEN string from /showBoard's method
 //then somehow use it to update the boards.
-
+//
 //setInterval("updateBoard()", 10000);
 //function updateBoard(){
-//var request = $.ajax({
-//	type: "POST",
-//	url: "/showBoard",
-//	data: {"name":""},
-//	dataType: "text"
-//	});
-//	request.done(function(JSON_string){
-//		(something here)
-//	});
-//});
+//	$.getJSON('/updateBoard'),function(data){
+//		if (board1Drag):
+//			board1.position(data, false);
+//		else:
+//			board2.position(data, false);
+//	}
+//}
+//
 </script>
 </body>
 
