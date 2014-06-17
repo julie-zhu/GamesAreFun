@@ -12,31 +12,33 @@ counter = 0
 
 @app.route("/")
 def home():
-	return render_template("home.html")
+	return render_template("home.html", piece = "piece")
 
 #give the ID of the player
 @app.route("/giveID")
 def giveID():
+	counter = 0
 	for x in players:
 		if x == 0:
 			players[x] = 1
-			return jsonify(counter + 1)
+			return jsonify(str(counter + 1 * 10))
 		else:
 			counter += 1
 			
 #updateBoard returns the current position of all the pieces
 @app.route("/updateBoard")
-def updateBoard():
-	return jsonify(boardStatus())
+def update():
+	boardData = db.boardStatus()
+	return jsonify(boardData)
 
 #updatePiece should be called whenever a piece is taken, moved, or promoted
 @app.route("/updatePiece")
 def updatePiece(row, FEN):
-	updateBoard(row, FEN)
+	db.updateBoard(row, FEN)
 
 @app.route("/newBoard")
 def newGame():
-	newGame2()
+	db.newGame2()
 
 #here for reference
 @app.route("/dosomething")

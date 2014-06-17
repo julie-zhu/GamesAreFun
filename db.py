@@ -54,7 +54,7 @@ def boardStatus():
 		if x != 7:
 			fenString += "/"
 	for x in range(8,16):
-		dbFenString2 = db.find_one({'row': x+1}, fields={'_id': False)}.getField('FEN')
+		dbFenString2 = db.find_one({'row': x+1}, fields={'_id': False}).getField('FEN')
 		fenString2 += dbFenString2
 		if x != 15:
 			fenString += "/"

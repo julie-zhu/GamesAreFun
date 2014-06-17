@@ -38,6 +38,9 @@ p {
 <p style="position: relative; left: -400px; top: 370px">PGN: <span id="pgn2"></span></p>
 
 <script>
+var board1Drag = true;
+var board2Drag = true;
+
 var board1,
   game1 = new Chess(),
   statusEl1 = $('#status1'),
@@ -50,19 +53,17 @@ var board2,
   fenEl2 = $('#fen2'),
   pgnEl2 = $('#pgn2');
 
-//$(document).ready(function(){
-//	$.getJSON('/giveID'),
-//	function(data){
-//		if (data < 3) {
-//			var board1Drag = true;
-//			var board2Drag = false;
-//		}
-//		else {
-//			var board1Drag = false;
-//			var board2Drag = true;
-//		}
-//	}
-//});
+$(document).ready(function(){
+	$.getJSON('/giveID'),
+	function(data){
+		if (data < 30) {
+			board2Drag = false;
+		}
+		else {
+			board1Drag = false;
+		}
+	}
+});
 
 //~~~~~~~~~~~~~for board 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // do not pick up pieces if the game is over
@@ -211,15 +212,15 @@ updateStatus();
 //this should be called every 10 seconds to update both boards
 //function below should get the FEN string from /showBoard's method
 //then somehow use it to update the boards.
-//
-//setInterval("updateBoard()", 10000);
-//function updateBoard(){
-//	$.getJSON('/updateBoard'),function(data){
-//		board1.position(data[0], false);
-//		baord2.position(data[1], false);
-//	}
-//}
-//
+
+setInterval("updateBoard()", 10000);
+function updateBoard(){
+	$.getJSON('/updateBoard'),function(data){
+		board1.position(data[0], false);
+		baord2.position(data[1], false);
+	}
+}
+
 </script>
 </body>
 
