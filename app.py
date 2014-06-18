@@ -10,9 +10,45 @@ app.secret_key = "asdfghjkl"
 players = [0,0,0,0]
 counter = 0
 
+
 @app.route("/")
+def index():
+        return return_template("homepage.html")
+
+@app.route("/home")
 def home():
 	return render_template("home.html", piece = "piece")
+
+
+@app.route("/login",methods=['GET','POST'])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+    else:
+        username = request.form['username'].encode('ascii','ignore')
+        password = request.form['password'].encode('ascii','ignore')
+        
+    if authenticate(username, password):
+        session['username'] = username
+        return render_template("page.html")
+    else:
+        return redirect(url_for('login'))
+          
+
+@app.route("/register",methods=["GET","POST"])
+def register():
+    if request.method == "GET":
+        return render_template("register.html")
+    else:
+
+        username = request.form["username"].encode("ascii", "ignore")
+        password = request.form["password"].encode("ascii", "ignore")
+
+        if adduser(username, password):
+            session['username'] = username
+            return redirect(url_for('login'))
+        else:
+            return redirect(url_for('register'))
 
 #give the ID of the player
 @app.route("/giveID")
