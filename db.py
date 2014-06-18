@@ -7,6 +7,21 @@ def open():
   db = client.boards
   return db
   
+
+  
+def adduser(user, pword):
+    if((db.info.find( {"username":user}, fields={"_id":False} ))).count() > 0:
+        return False
+    else:
+        db.info.insert( {"username":user, "password":pword} )
+        return True
+    
+def authenticate(user, pword):
+    if ((db.info.find( {"username":user}, {"password":pword} ))).count() > 0:
+        return True
+    else:
+        return False
+
 def newGame():
 	db = open()
 	db.remove({})
